@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block main_content %}
+  <div class="flex flex-1 h-max flex-col w-full justify-center items-center gap-4">
+    <div class="flex flex-col justify-center items-center w-1/2 gap-8">
+      <h2 class="text-2xl font-bold text-emerald-500 mb-4 text-center">Produto cadastrado com sucesso!</h2>
+      <p class="text-lg text-center">
+        O produto foi cadastrado com sucesso e agora poderá aparecer na lista de produtos, se desejar pode 
+        clicar no botão "Voltar" e ver a lista de produtos já atualizada com o novo produto.
+      </p>
+      <a class="py-2 px-8 bg-emerald-500 text-white rounded cursor-pointer text-center" href="/produtos">Voltar</a>
+    </div>
+  <div>
+{% endblock %}

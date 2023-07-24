@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Produtos</title>
+  <link rel="stylesheet" href="{% static 'common/css/global.css' %}" />
+  <link rel="stylesheet" href="{% static 'produtos/css/styles.css' %}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    const colors = require('tailwindcss/colors')
+
+    module.exports = {
+      theme: {
+        extend: {
+          colors: {
+            primary: colors.emerald,
+          }
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="flex flex-col min-h-screen">
+  <!-- header -->
+  <header class="flex fit w-full justify-between items-center bg-stone-950 px-16 py-4">
+    <div>
+      <img class="h-[2.5rem] w-auto" src="{% static 'common/img/logo.png' %}" alt="logo da pagina">
+    </div>
+    <div class="flex item-center w-96">
+      <input class="w-full py-[0.4rem] px-5 rounded" type="search" name="search" id="search"
+        placeholder="Buscar produto...">
+    </div>
+    <div class="flex justify-center items-center gap-4">
+      <a class="text-white" href="/admin">Área Administrativa</a>
+      <img class="h-8 w-8 rounded" src="https://www.github.com/tomethiago.png" alt="Thiago Tomé">
+      <p class="text-white">Thiago Tomé</p>
+      <button class="text-white">
+        <i class="inline-block cursor-pointer" data-feather="log-out"></i>
+      </button>
+    </div>
+  </header>
+  <!-- main content -->
+  <main class="flex flex-1 h-max flex-col w-full px-16 py-4 gap-4">
+    {% block main_content %}
+
+    {% endblock %}
+  </main>
+  <script>
+    feather.replace()
+  </script>
+</body>
+
+</html>

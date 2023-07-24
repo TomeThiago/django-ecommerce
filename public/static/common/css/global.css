@@ -1,0 +1,7 @@
+.bg-modal {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.bg-modal.show {
+  display: static;
+}

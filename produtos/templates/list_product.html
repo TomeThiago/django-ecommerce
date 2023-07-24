@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="flex h-full justify-between items-center py-2">
+  <h2 class="text-black text-xl font-medium">Produtos em Destaques</h2>
+  <a class="text-white text-lg px-6 py-1 bg-emerald-500 font-medium rounded" href="/produtos/criar">Novo Produto</a>
+</div>
+<table class="table-auto columns-12">
+  <thead>
+    <tr class="font-medium">
+      <th class="bg-emerald-500 text-white text-left font-medium pl-4 rounded-tl">ID</th>
+      <td class="bg-emerald-500 text-white py-2">Nome</td>
+      <td class="bg-emerald-500 text-white py-2">Valor</td>
+      <td class="bg-emerald-500 text-white py-2 rounded-tr">Ações</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in list_products %}
+    {% if forloop.counter0|divisibleby:2 %}
+    <tr class="bg-gray-200">
+      {% else %}
+    <tr class="bg-white">
+      {% endif %}
+      <td class="py-2 columns-3 pl-4">{{ product.id }}</td>
+      <td class="py-2 columns-5">{{ product.nome }}</td>
+      <td class="py-2 columns-3">R$ {{ product.valor }}</td>
+      <td class="columns-1">
+        <i class="inline-block cursor-pointer text-blue-400 mr-1 h-5" data-feather="edit" onclick="handleEdit({{ product.id }})"></i>
+        <i class="inline-block cursor-pointer text-red-500 h-5" data-feather="trash"
+          onclick="handleDelete({{ product.id }})"></i>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="absolute top-0 left-0 right-0 h-full w-full flex items-center justify-center bg-modal hidden"
+  id="modal-delete">
+  <div class="bg-white drop-shadow-md px-4 py-6 w-96 rounded">
+    <h2 class="text-2xl font-bold mb-4 text-emerald-500 text-center">Exclusão do Produto</h2>
+    <p class="text-lg text-center my-6">Tem certeza que você deseja excluir este produto? Esta ação é irreversível.</p>
+
+    <div class="flex justify-between gap-2">
+      <button class="w-1/2 py-2 px-8 bg-gray-400 text-white rounded cursor-pointer text-center"
+        id="button-modal-cancel">Cancelar</button>
+      <button class="w-1/2 py-2 bg-red-500 text-white rounded cursor-pointer"
+        id="button-modal-confirm">Confirmar</button>
+    </div>
+    <div>
+    </div>
+    <script>
+      const butttonCancel = document.querySelector('#button-modal-cancel');
+      const butttonConfirm = document.querySelector('#button-modal-confirm');
+
+      const modal = document.querySelector('#modal-delete');
+
+      butttonCancel.addEventListener('click', () => {
+        modal.className += 'hidden'
+      });
+
+      butttonConfirm.addEventListener('click', () => {
+        modal.className += 'hidden'
+      });
+
+      function handleEdit(idProduto) {
+        document.location.href = `/produtos/${idProduto}?action=edit`
+      }
+
+      function handleDelete(idProduto) {
+        modal.className = modal.className.replace("hidden", "");
+      }
+
+    </script>
+    {% endblock %}

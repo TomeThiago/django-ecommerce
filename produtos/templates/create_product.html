@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="flex flex-1 h-max flex-col w-full justify-center items-center gap-4">
+  <form class="w-1/2 h-1/2 py-8 px-4 rounded" action="{% url 'create_product' %}" method="POST"> {% csrf_token %}
+    <h2 class="text-3xl font-bold mb-4 text-emerald-500">Adicionar Novo Produto</h2>
+
+    <div class="mb-4 w-full bg-pink">
+      <label class="block mb-3" for="nome">Nome do Produto:</label>
+      <input
+        class="w-full py-[0.4rem] px-5 rounded border-[1px] border-emerald-500 focus:outline-none focus:border-[2px]"
+        type="text" name="nome" placeholder="Digite o nome do produto" maxlength="30" />
+    </div>
+
+    <div class="mb-8">
+      <label class="block mb-3" for="valor">Valor do Produto:</label>
+      <input
+        class="w-full py-[0.4rem] px-5 rounded border-[1px] border-emerald-500 focus:outline-none focus:border-[2px]"
+        type="number" step="0.01" min="0" name="valor" placeholder="Digite o valor do produto" />
+    </div>
+
+    <div class="flex gap-4">
+      <a class="w-1/2 py-2 px-8 bg-gray-400 text-white rounded cursor-pointer text-center" href="/produtos">Cancelar</a>
+      <input class="w-1/2 py-2 bg-emerald-500 text-white rounded cursor-pointer" type="submit" value="Cadastrar" />
+    </div>
+  </form>
+</div>
+{% endblock %}
